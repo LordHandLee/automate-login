@@ -100,8 +100,8 @@ def wow_start():
 def login():
     """logs in all accounts for given rotation"""
     #for set in set
-    username = 'Lordhandlee'
-    password = 'ehl23837'
+    username = ''
+    password = ''
     hwnd = get_hwnds(PID[0])
     hwnd1 = get_hwnds(PID[1])
     hwnd2 = get_hwnds(PID[2])
