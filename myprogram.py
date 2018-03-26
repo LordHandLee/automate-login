@@ -9,8 +9,6 @@ import win32con
 import time
 import subprocess
 import pyautogui
-from functools import partial
-#from functions import *
 import fileinput
 
 
@@ -22,13 +20,6 @@ global PID
 PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
 WoW_Count = 0
 set = 0
-
-
-
-
-def doNothing():
-    print("ok ok I won't...")
-
 
 def get_hwnds(pid):
     """return a list of window handlers based on it process id"""
@@ -98,60 +89,36 @@ def wow_start():
     win32gui.SetActiveWindow(hwnd9[0])
     win32gui.MoveWindow(hwnd9[0], 1528, 533, 399, 540, True)
 
-def login():
-    """logs in all accounts for given rotation"""
-    #for set in set
-    username = ''
-    password = ''
-    hwnd = get_hwnds(PID[0])
-    hwnd1 = get_hwnds(PID[1])
-    hwnd2 = get_hwnds(PID[2])
-    hwnd3 = get_hwnds(PID[3])
-    hwnd4 = get_hwnds(PID[4])
-    hwnd5 = get_hwnds(PID[5])
-    hwnd6 = get_hwnds(PID[6])
-    hwnd7 = get_hwnds(PID[7])
-    hwnd8 = get_hwnds(PID[8])
-    hwnd9 = get_hwnds(PID[9])
-    accounts = [hwnd[0], hwnd1[0], hwnd2[0], hwnd3[0], hwnd4[0], hwnd5[0], hwnd6[0], hwnd7[0], hwnd8[0], hwnd9[0]]
-    for number in accounts:
-        win32gui.ShowWindow(number, win32con.SW_RESTORE)
-        win32gui.SetActiveWindow(number)
-        win32gui.SetForegroundWindow(number)
-        pyautogui.typewrite(username)
-        pyautogui.press('tab')
-        pyautogui.typewrite(password)
-        pyautogui.press('enter')
 
-def help_login(filename, filename1):
-    with open(filename, "r") as f:
-        lines = f.read().splitlines()
-    with open(filename1, "r") as p:
-        lines2 = p.read().splitlines()
-    line = list(lines)
-    line2 = list(lines2)
-    accounts = [get_hwnds(PID[x])[0] for x in range(10)]
-    for n in lines:
-        line = list(lines)
-        username = n
-    for i in lines2:
-        line2 = list(lines2)
-        password = i
-    for number in accounts:
-        # enumerate_object = enumerate(lines)
-        # iteration = next(enumerate_object)
-        win32gui.ShowWindow(number, win32con.SW_RESTORE)
-        win32gui.SetActiveWindow(number)
-        win32gui.SetForegroundWindow(number)
-        pyautogui.typewrite(username)
-        pyautogui.press('tab')
-        pyautogui.typewrite(password)
-        pyautogui.press('enter')
-        # print(next(iter(username)))
-        # print(next(iter(password)))
-        print(line)
-        print(username)
-        print(password)
+# def help_login(filename, filename1):
+#     with open(filename, "r") as f:
+#         lines = f.read().splitlines()
+#     with open(filename1, "r") as p:
+#         lines2 = p.read().splitlines()
+#     line = list(lines)
+#     line2 = list(lines2)
+#     accounts = [get_hwnds(PID[x])[0] for x in range(10)]
+#     for n in lines:
+#         line = list(lines)
+#         username = n
+#     for i in lines2:
+#         line2 = list(lines2)
+#         password = i
+#     for number in accounts:
+#         # enumerate_object = enumerate(lines)
+#         # iteration = next(enumerate_object)
+#         win32gui.ShowWindow(number, win32con.SW_RESTORE)
+#         win32gui.SetActiveWindow(number)
+#         win32gui.SetForegroundWindow(number)
+#         pyautogui.typewrite(username)
+#         pyautogui.press('tab')
+#         pyautogui.typewrite(password)
+#         pyautogui.press('enter')
+#         # print(next(iter(username)))
+#         # print(next(iter(password)))
+#         print(line)
+#         print(username)
+#         print(password)
 
 def login1():
     """logs in all accounts for given rotation"""
@@ -819,212 +786,6 @@ def killWoW():
         if proc.name() == 'WoW.exe':
             proc.kill()
 
-def start():
-    WoW_Count = 0
-    set = 0
-    global PID
-    PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-    while WoW_Count < 10 and set < 24:
-        prog = ttk.Progressbar(root, style="red.Horizontal.TProgressbar", orient='horizontal', length=500, mode='determinate', maximum=10, val=start())
-        prog.start(interval=None)
-        openWoW()
-        WoW_Count += 1
-        prog.update()
-        if WoW_Count >= 10:
-            username = "Lordhandlee"
-            password = 'ehl23837'
-            PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-            time.sleep(3)
-            wow_start()
-            time.sleep(3)
-            login()
-            time.sleep(5)
-            #prog.stop()
-            #timenow = time.time()
-            #elapsed = timenow - time.time()
-            #if elapsed >= 70:
-
-            killWoW()
-            WoW_Count = 0
-            set += 1
-            while set == 1 and WoW_Count < 10:
-                    openWoW()
-                    WoW_Count += 1
-                    time.sleep(5)
-                    wow_start()
-            if set == 2 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 3 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 4 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 5 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 6 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 7 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 8 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 9 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 10 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 11 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 12 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 13 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 14 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 15 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 16 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 17 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 18 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 19 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 20 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 21 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 22 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-            if set == 23 and WoW_Count < 10:
-                    openWoW()
-                    wow_start()
-                    set = 0
-
-def start1():
-    WoW_Count = 0
-    set = 0
-    global PID
-    PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-    while WoW_Count < 10 and set == 0:
-            openWoW()
-            WoW_Count += 1
-            if WoW_Count >= 10:
-                time.sleep(3)
-                PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-                wow_start()
-                time.sleep(5)
-                login()
-                time.sleep(10)
-                killWoW()
-                set = set + 1
-            continue
-
-
-    while WoW_Count < 10 and set == 1:
-            openWoW()
-            WoW_Count += 1
-            if WoW_Count >= 10:
-                time.sleep(3)
-                PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-                wow_start()
-                time.sleep(5)
-                login()
-                time.sleep(10)
-                killWoW()
-                set = set + 1
-
-def start2():
-    WoW_Count = 0
-    set = 0
-    global PID
-    PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-    while WoW_Count < 10:
-        if set == 0:
-          openWoW()
-          WoW_Count += 1
-        if WoW_Count >= 10:
-            time.sleep(3)
-            PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-            wow_start()
-            time.sleep(5)
-            login()
-            time.sleep(5)
-            killWoW()
-            WoW_Count = 0
-            set += 1
-        if set == 1:
-            openWoW()
-            WoW_Count += 1
-        if WoW_Count >=10:
-            time.sleep(3)
-            PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-            wow_start()
-            time.sleep(5)
-            login()
-            time.sleep(5)
-            killWoW()
-            WoW_Count = 0
-            set += 1
-        if set == 2:
-            openWoW()
-            WoW_Count += 1
-        if WoW_Count >=10:
-            time.sleep(3)
-            PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-            wow_start()
-            time.sleep(5)
-            login()
-            time.sleep(5)
-            killWoW()
-            WoW_Count = 0
-            set += 1
-        if set == 3:
-            openWoW()
-            WoW_Count += 1
-        if WoW_Count >=10:
-            time.sleep(3)
-            PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-            wow_start()
-            time.sleep(5)
-            login()
-            time.sleep(5)
-            killWoW()
-            WoW_Count = 0
-            set += 1
-        if set == 4:
-            openWoW()
-            WoW_Count += 1
-        if WoW_Count >=10:
-            time.sleep(3)
-            PID = [x.pid for x in psutil.process_iter() if x.name() == "WoW.exe"]
-            wow_start()
-            time.sleep(5)
-            login()
-            time.sleep(5)
-            killWoW()
-            WoW_Count = 0
-            set += 1
-
 
 def openWoW2():
     count = 9
@@ -1284,24 +1045,7 @@ def start3():
             time.sleep(3)
             killWoW()
             set += 1
-
-
-
-def start4():
-    login(name2)
-
-
-
-
-
-
-
-
-
-
-
-
-
+####GUI###############
 
 root = Tk()
 root.title("World of Warcraft Automation")
@@ -1587,62 +1331,6 @@ def leftClick(event):
 def leftClick2(event):
     print("Left")
 
-
-
-# top_button = Button(root, text="Accounts", command=partial(open_top, closeme))
-# top_button.bind("<Button-1>", leftClick2)
-# # top_button.grid(column=1, row=1)
-# top_button.pack()
-
-
-
-# global z
-# z = 0
-#
-# if z == 0:
-#     top_button.destroy()
-#     top_button = Button(root, text="Accounts", command=None)
-#     top_button.bind("<Button-1>", leftClick2)
-#     top_button.pack()
-#     # top_button.grid(column=1, row=1)
-#     #top_button.configure(state='active')
-#
-#
-#     root.update()
-#     z = 2
-#
-# if z == 2:
-#
-#     top_button.destroy()
-#     top_button = Button(root, text="Accounts", command=open_top)
-#     top_button.bind("<Button-1>", leftClick2)
-#     top_button.pack()
-#     # top_button.grid(column=1, row=1)
-#     #top_button.configure(state='disabled')
-#
-#     root.update()
-#
-#     z = 0
-
-def leftClick(event):
-    print("Left")
-    # if leftClick(top_button):
-    #     z = "crap"
-    # else:
-    #     z = "shit"
-
-
-def leftClick1(event):
-    print("Left")
-
-def leftClick2(event):
-    print("Left")
-
-'''New Window'''
-
-def quit():
-    top1.destroy()
-
 '''account entry'''
 def account_entry(top2):
     global username1, username2, username3, username4, username5, username6, username7, username8, username9, username10, password1, password2, password3, password4, password5, password6, password7, password8, password9, password10
@@ -1820,98 +1508,8 @@ def account_entry(top2):
 
     return username1, username2, username3, username4, username5, username6, username7, username8, username9, username10, password1, password2, password3, password4, password5, password6, password7, password8, password9, password10
 
-def account_entry2(top2, username1, password1, a, b, c, d):
 
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username1)
-    e.grid(row=a, column=b)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password1)
-    e1.grid(row=c, column=d)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username2)
-    e.grid(row=1, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password2)
-    e1.grid(row=1, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username3)
-    e.grid(row=2, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password3)
-    e1.grid(row=2, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username4)
-    e.grid(row=3, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password4)
-    e1.grid(row=3, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username5)
-    e.grid(row=4, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password5)
-    e1.grid(row=4, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username6)
-    e.grid(row=5, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password6)
-    e1.grid(row=5, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username7)
-    e.grid(row=6, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password7)
-    e1.grid(row=6, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username8)
-    e.grid(row=7, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password8)
-    e1.grid(row=7, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username9)
-    e.grid(row=8, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password9)
-    e1.grid(row=8, column=3)
-
-    username1 = StringVar()
-    e = Entry(top2, textvariable=username10)
-    e.grid(row=9, column=1)
-
-    password1 = StringVar()
-    e1 = Entry(top2, textvariable=password10)
-    e1.grid(row=9, column=3)
-
-    '''save buttons'''
-    btn3 = Button(top2, text="Save Username 1", command=lambda: save_username_test("accountnames.txt"))
-    btn3.bind("<Button-1>", leftClick)
-    btn3.grid(column=2, row=0)
-
-    btn4 = Button(top2, text="Save Password 1", command=lambda: save_password("passwords.txt"))
-    btn4.bind("Button-1>", leftClick1)
-    btn4.grid(column=4, row=1)
-
-
+#######OPEN WINDOWS 1 TIME AND DISABLE BUTTON
 def close_group_1():
 
         top2.destroy()  # close the popup
@@ -1923,11 +1521,8 @@ def close_group_2():
         group2.grid(row=2, column=1)
         top3.destroy()  # close the popup
         group2.config(state='normal')
-
-
-#def close_group_3():
-
-#'''New Window'''
+        
+###############################
 
 def open_top2():
     global top2
@@ -2130,7 +1725,7 @@ def open_top25():
 
 count = 0
 
-
+###DISABLE TOP BUTTON AFTER CLICK AND REENABLES ON WINDOW CLOSE#########
 def closeme():
     top1.destroy()
 
@@ -2392,111 +1987,8 @@ def open_top():
             group24.grid(row=12, column=2)
 
 
-        # def closeme():
-        #     open_top()
-        #     "None"
-
-            # def new_top_button():
-            #
-            #     # NewWin = tk.Toplevel(root)
-            #     # NewWin.title('New Window')
-            #     # NewWin.geometry('300x300')
-            #     # NewWinButton.config(state='disable')
-            #     top1 = Toplevel(root, bg="black")
-            #     top1.title("Groups of Accounts")
-            #     top1.geometry("600x800")
-            #     top1.config(state='disbale')
-            #     #top_button = Button(root, text="Accounts", command=open_top)
-            #     #top_button.bind("<Button-1>", leftClick2)
-            #     # top_button.grid(column=1, row=1)
-            #     #top_button.pack()
-            #     top_button.config(state='disable')
-            #
-            #     def quit_win():
-            #         top1.destroy()
-            #         top_button.config(state='normal')
-            #
-            #     QuitButton = Button(top1, text='Quit', command=quit_win)
-            #     QuitButton.pack()
-            #
-            #     top1.protocol("WM_DELETE_WINDOW", quit_win)
-            # top_button = Button(root, text="Accounts", command=new_top_button)
-            # top_button.pack
-
-        # top_button = Button(root, text="Accounts", command=top_button)
-        # top_button.bind("<Button-1>", leftClick2)
-        # # top_button.grid(column=1, row=1)
-        # top_button.pack()
-
-        # for i in range(len(hi)):
-        #     if i ==2:
-        #         top_button.destroy()
-        #         top_button = Button(root, text="Accounts", command=open_top)
-        #         top_button.bind("<Button-1>", leftClick2)
-        #         top_button.pack()
-        #         # top_button.grid(column=1, row=1)
-        #         # top_button.configure(state='active')
-        #
-        #         root.update()
-        #     else:
-        #         top_button.destroy()
-        #         top_button = Button(root, text="Accounts", command=open_top)
-        #         top_button.bind("<Button-1>", leftClick2)
-        #         top_button.pack()
-        #         # top_button.grid(column=1, row=1)
-        #         # top_button.configure(state='disabled')
-        #
-        #         root.update()
 
 
-
-         #if z == 0:
-             #top_button.protocol("WM_DELETE_WINDOW", top_button.destroy)
-
-        #     top_button.destroy()
-        #     top_button = Button(root, text="Accounts", command=None)
-        #     top_button.bind("<Button-1>", leftClick2)
-        #     top_button.pack()
-        #     # top_button.grid(column=1, row=1)
-        #     # top_button.configure(state='active')
-        #
-        #     root.update()
-             #z = 2
-        #
-         #if z == 2:
-        #     top_button.destroy()
-        #      top_button = Button(root, text="Accounts", command=open_top)
-        #      top_button.bind("<Button-1>", leftClick2)
-        #      top_button.pack()
-        #     # top_button.grid(column=1, row=1)
-        #     # top_button.configure(state='disabled')
-        #
-        #     root.update()
-        #
-             #z = 0
-
-
-
-
-
-#def
-
-
-
-
-
-
-'''get all usernames and password from files and stores into list'''
-
-#all_usernames = [username1, ]
-#all_passwords =
-
-
-def leftClick(event):
-    print("Left")
-
-def leftClick1(event):
-    print("Left")
 count = 0
 def save_username(filename):
     with open(filename, "w+") as f:
@@ -2601,18 +2093,6 @@ def save_username_test(filename):
             if username10:
                 list1[9] = username10.get() + '\n'
                 count1 += 1
-            #for x in list1:
-                    #x.strip()
-                    #f.write(str(x) + '\n')
-                    #f.write("%s%s\n" % str(x))
-                    #f.write("\n".join(map(lambda x: str(x), list1)) + "\n")
-                    #f.write("\n".join("%s%s" % (str(x) for x in list1)))
-                    #f.write("%s%s\n" % (x, x.join(list1)))
-                    #f.writelines(x)
-            #root.update()
-                #if leftClick(username1)
-            #if top3:
-
 
 def save_password(filename):
     with open(filename, "w+") as f:
@@ -2648,13 +2128,8 @@ def save_password(filename):
                 f.write(password10.get() + '\n')
                 count2 += 1
 
-
-
 top_button = Button(root, text="Accounts", command=open_top)
 top_button.bind("<Button-1>", leftClick2)
 top_button.pack()
-
-
-
 
 root.mainloop()
