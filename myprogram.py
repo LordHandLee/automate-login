@@ -9,6 +9,7 @@ import win32con
 import time
 import subprocess
 import pyautogui
+from functools import partial
 #from functions import *
 import fileinput
 
@@ -100,8 +101,8 @@ def wow_start():
 def login():
     """logs in all accounts for given rotation"""
     #for set in set
-    username = ''
-    password = ''
+    username = 'Lordhandlee'
+    password = 'ehl23837'
     hwnd = get_hwnds(PID[0])
     hwnd1 = get_hwnds(PID[1])
     hwnd2 = get_hwnds(PID[2])
@@ -1348,10 +1349,237 @@ btn2.pack()
 def open_top():
     global top1
     global top_button
-    z = 0
+    #z = 0
     top1 = Toplevel(root, bg="black")
     top1.title("Groups of Accounts")
     top1.geometry("600x800")
+
+    '''Groups'''
+    group1 = Button(top1, text="Group 1", bg="red", command=open_top2)
+    group1.bind("<Button-1>", leftClick)
+    group1.grid(row=1, column=1)
+
+    group2 = Button(top1, text="Group 2", bg="red", command=open_top3)
+    group2.bind("<Button-1>", leftClick)
+    group2.grid(row=2, column=1)
+
+    group3 = Button(top1, text="Group 3", bg="red", command=open_top4)
+    group3.bind("<Button-1>", leftClick)
+    group3.grid(row=3, column=1)
+
+    group4 = Button(top1, text="Group 4", bg="red", command=open_top5)
+    group4.bind("<Button-1>", leftClick)
+    group4.grid(row=4, column=1)
+
+    group5 = Button(top1, text="Group 5", bg="red", command=open_top6)
+    group5.bind("<Button-1>", leftClick)
+    group5.grid(row=5, column=1)
+
+    group6 = Button(top1, text="Group 6", bg="red", command=open_top7)
+    group6.bind("<Button-1>", leftClick)
+    group6.grid(row=6, column=1)
+
+    group7 = Button(top1, text="Group 7", bg="red", command=open_top8)
+    group7.bind("<Button-1>", leftClick)
+    group7.grid(row=7, column=1)
+
+    group8 = Button(top1, text="Group 8", bg="red", command=open_top9)
+    group8.bind("<Button-1>", leftClick)
+    group8.grid(row=8, column=1)
+
+    group9 = Button(top1, text="Group 9", bg="red", command=open_top10)
+    group9.bind("<Button-1>", leftClick)
+    group9.grid(row=9, column=1)
+
+    group10 = Button(top1, text="Group 10", bg="red", command=open_top11)
+    group10.bind("<Button-1>", leftClick)
+    group10.grid(row=10, column=1)
+
+    group11 = Button(top1, text="Group 11", bg="red", command=open_top12)
+    group11.bind("<Button-1>", leftClick)
+    group11.grid(row=11, column=1)
+
+    group12 = Button(top1, text="Group 12", bg="red", command=open_top13)
+    group12.bind("<Button-1>", leftClick)
+    group12.grid(row=12, column=1)
+
+    group13 = Button(top1, text="Group 13", bg="red", command=open_top14)
+    group13.bind("<Button-1>", leftClick)
+    group13.grid(row=1, column=2)
+
+    group14 = Button(top1, text="Group 14", bg="red", command=open_top15)
+    group14.bind("<Button-1>", leftClick)
+    group14.grid(row=2, column=2)
+
+    group15 = Button(top1, text="Group 15", bg="red", command=open_top16)
+    group15.bind("<Button-1>", leftClick)
+    group15.grid(row=3, column=2)
+
+    group16 = Button(top1, text="Group 16", bg="red", command=open_top17)
+    group16.bind("<Button-1>", leftClick)
+    group16.grid(row=4, column=2)
+
+    group17 = Button(top1, text="Group 17", bg="red", command=open_top18)
+    group17.bind("<Button-1>", leftClick)
+    group17.grid(row=5, column=2)
+
+    group18 = Button(top1, text="Group 18", bg="red", command=open_top19)
+    group18.bind("<Button-1>", leftClick)
+    group18.grid(row=6, column=2)
+
+    group19 = Button(top1, text="Group 19", bg="red", command=open_top20)
+    group19.bind("<Button-1>", leftClick)
+    group19.grid(row=7, column=2)
+
+    group20 = Button(top1, text="Group 20", bg="red", command=open_top21)
+    group20.bind("<Button-1>", leftClick)
+    group20.grid(row=8, column=2)
+
+    group21 = Button(top1, text="Group 21", bg="red", command=open_top22)
+    group21.bind("<Button-1>", leftClick)
+    group21.grid(row=9, column=2)
+
+    group22 = Button(top1, text="Group 22", bg="red", command=open_top23)
+    group22.bind("<Button-1>", leftClick)
+    group22.grid(row=10, column=2)
+
+    group23 = Button(top1, text="Group 23", bg="red", command=open_top24)
+    group23.bind("<Button-1>", leftClick)
+    group23.grid(row=11, column=2)
+
+    group24 = Button(top1, text="Group 24", bg="red", command=open_top25)
+    group24.bind("<Button-1>", leftClick)
+    group24.grid(row=12, column=2)
+
+    '''if 10 usernames in accountnames then red to green'''
+    with open("accountnames.txt", "rt") as f, open("passwords.txt", "rt") as p:
+        value = [x.strip() for x in (list(f.readlines()))]
+        value2 = [x.strip() for x in (list(p.readlines()))]
+        # for line in value and value2:
+    if len(value) >= 10 and len(value2) >= 10:
+        group1.destroy()
+        group1 = Button(top1, text="Group 1", bg="green", command=open_top2)
+        group1.bind("<Button-1>", leftClick)
+        group1.grid(row=1, column=1)
+        root.update()
+        print(len(value))
+        print(len(value2))
+    if len(value) >= 20 and len(value2) >= 20:
+        group2.destroy()
+        group2 = Button(top1, text="Group 2", bg="green", command=open_top3)
+        group2.bind("<Button-1>", leftClick)
+        group2.grid(row=2, column=1)
+    if len(value) >= 30 and len(value2) >= 30:
+        group3.destroy()
+        group3 = Button(top1, text="Group 3", bg="green", command=open_top4)
+        group3.bind("<Button-1>", leftClick)
+        group3.grid(row=3, column=1)
+    if len(value) >= 40 and len(value2) >= 40:
+        group4.destroy()
+        group4 = Button(top1, text="Group 4", bg="green", command=open_top5)
+        group4.bind("<Button-1>", leftClick)
+        group4.grid(row=4, column=1)
+    if len(value) >= 50 and len(value2) >= 50:
+        group5.destroy()
+        group5 = Button(top1, text="Group 5", bg="green", command=open_top6)
+        group5.bind("<Button-1>", leftClick)
+        group5.grid(row=5, column=1)
+    if len(value) >= 60 and len(value2) >= 60:
+        group6.destroy()
+        group6 = Button(top1, text="Group 6", bg="green", command=open_top7)
+        group6.bind("<Button-1>", leftClick)
+        group6.grid(row=6, column=1)
+    if len(value) >= 70 and len(value2) >= 70:
+        group7.destroy()
+        group7 = Button(top1, text="Group 7", bg="green", command=open_top8)
+        group7.bind("<Button-1>", leftClick)
+        group7.grid(row=7, column=1)
+    if len(value) >= 80 and len(value2) >= 80:
+        group8.destroy()
+        group8 = Button(top1, text="Group 8", bg="green", command=open_top9)
+        group8.bind("<Button-1>", leftClick)
+        group8.grid(row=8, column=1)
+    if len(value) >= 90 and len(value2) >= 90:
+        group9.destroy()
+        group9 = Button(top1, text="Group 9", bg="green", command=open_top10)
+        group9.bind("<Button-1>", leftClick)
+        group9.grid(row=9, column=1)
+    if len(value) >= 100 and len(value2) >= 100:
+        group10.destroy()
+        group10 = Button(top1, text="Group 10", bg="green", command=open_top11)
+        group10.bind("<Button-1>", leftClick)
+        group10.grid(row=10, column=1)
+    if len(value) >= 110 and len(value2) >= 110:
+        group11.destroy()
+        group11 = Button(top1, text="Group 11", bg="green", command=open_top12)
+        group11.bind("<Button-1>", leftClick)
+        group11.grid(row=11, column=1)
+    if len(value) >= 120 and len(value2) >= 120:
+        group12.destroy()
+        group12 = Button(top1, text="Group 12", bg="green", command=open_top13)
+        group12.bind("<Button-1>", leftClick)
+        group12.grid(row=12, column=1)
+    if len(value) >= 130 and len(value2) >= 130:
+        group13.destroy()
+        group13 = Button(top1, text="Group 13", bg="green", command=open_top14)
+        group13.bind("<Button-1>", leftClick)
+        group13.grid(row=1, column=2)
+    if len(value) >= 140 and len(value2) >= 140:
+        group14.destroy()
+        group14 = Button(top1, text="Group 14", bg="green", command=open_top15)
+        group14.bind("<Button-1>", leftClick)
+        group14.grid(row=2, column=2)
+    if len(value) >= 150 and len(value2) >= 150:
+        group15.destroy()
+        group15 = Button(top1, text="Group 15", bg="green", command=open_top16)
+        group15.bind("<Button-1>", leftClick)
+        group15.grid(row=3, column=2)
+    if len(value) >= 160 and len(value2) >= 160:
+        group16.destroy()
+        group16 = Button(top1, text="Group 16", bg="green", command=open_top17)
+        group16.bind("<Button-1>", leftClick)
+        group16.grid(row=4, column=2)
+    if len(value) >= 170 and len(value2) >= 170:
+        group17.destroy()
+        group17 = Button(top1, text="Group 17", bg="green", command=open_top18)
+        group17.bind("<Button-1>", leftClick)
+        group17.grid(row=5, column=2)
+    if len(value) >= 180 and len(value2) >= 180:
+        group18.destroy()
+        group18 = Button(top1, text="Group 18", bg="green", command=open_top19)
+        group18.bind("<Button-1>", leftClick)
+        group18.grid(row=6, column=2)
+    if len(value) >= 190 and len(value2) >= 190:
+        group19.destroy()
+        group19 = Button(top1, text="Group 19", bg="green", command=open_top20)
+        group19.bind("<Button-1>", leftClick)
+        group19.grid(row=7, column=2)
+    if len(value) >= 200 and len(value2) >= 200:
+        group20.destroy()
+        group20 = Button(top1, text="Group 20", bg="green", command=open_top21)
+        group20.bind("<Button-1>", leftClick)
+        group20.grid(row=8, column=2)
+    if len(value) >= 210 and len(value2) >= 210:
+        group21.destroy()
+        group21 = Button(top1, text="Group 21", bg="green", command=open_top22)
+        group21.bind("<Button-1>", leftClick)
+        group21.grid(row=9, column=2)
+    if len(value) >= 220 and len(value2) >= 220:
+        group22.destroy()
+        group22 = Button(top1, text="Group 22", bg="green", command=open_top23)
+        group22.bind("<Button-1>", leftClick)
+        group22.grid(row=10, column=2)
+    if len(value) >= 230 and len(value2) >= 230:
+        group23.destroy()
+        group23 = Button(top1, text="Group 23", bg="green", command=open_top24)
+        group23.bind("<Button-1>", leftClick)
+        group23.grid(row=11, column=2)
+    if len(value) >= 240 and len(value2) >= 240:
+        group24.destroy()
+        group24 = Button(top1, text="Group 24", bg="green", command=open_top25)
+        group24.bind("<Button-1>", leftClick)
+        group24.grid(row=12, column=2)
+
 
 def leftClick(event):
     print("Left")
@@ -1361,45 +1589,40 @@ def leftClick2(event):
 
 
 
-top_button = Button(root, text="Accounts", command=open_top)
-top_button.bind("<Button-1>", leftClick2)
-# top_button.grid(column=1, row=1)
-top_button.pack()
-
-class FetusGod(top_button):
-    def __init__(self, master=None, **kwargs):
-        Button.__init__(self, master, **kwargs)
-        self.config(command=self.toggle)
-
-    def toggle(self):
-        self.config(command=self['None'])
-
-global z
-z = 0
-
-if z == 0:
-    top_button.destroy()
-    top_button = Button(root, text="Accounts", command=open_top())
-    top_button.bind("<Button-1>", leftClick2)
-    top_button.pack()
-    # top_button.grid(column=1, row=1)
-    top_button.configure(state='active')
+# top_button = Button(root, text="Accounts", command=partial(open_top, closeme))
+# top_button.bind("<Button-1>", leftClick2)
+# # top_button.grid(column=1, row=1)
+# top_button.pack()
 
 
-    root.update()
-    z = 1
 
-if z >= 1:
-    top_button.destroy()
-    top_button = Button(root, text="Accounts", command=None)
-    top_button.bind("<Button-1>", leftClick2)
-    top_button.pack()
-    # top_button.grid(column=1, row=1)
-    #top_button.configure(state='disabled')
-
-    root.update()
-
-    z = 0
+# global z
+# z = 0
+#
+# if z == 0:
+#     top_button.destroy()
+#     top_button = Button(root, text="Accounts", command=None)
+#     top_button.bind("<Button-1>", leftClick2)
+#     top_button.pack()
+#     # top_button.grid(column=1, row=1)
+#     #top_button.configure(state='active')
+#
+#
+#     root.update()
+#     z = 2
+#
+# if z == 2:
+#
+#     top_button.destroy()
+#     top_button = Button(root, text="Accounts", command=open_top)
+#     top_button.bind("<Button-1>", leftClick2)
+#     top_button.pack()
+#     # top_button.grid(column=1, row=1)
+#     #top_button.configure(state='disabled')
+#
+#     root.update()
+#
+#     z = 0
 
 def leftClick(event):
     print("Left")
@@ -1689,15 +1912,45 @@ def account_entry2(top2, username1, password1, a, b, c, d):
     btn4.grid(column=4, row=1)
 
 
+def close_group_1():
 
-'''New Window'''
+        top2.destroy()  # close the popup
+        group1.config(state='normal')
+
+def close_group_2():
+        group2 = Button(top1, text="Group 2", bg="red", command=open_top3)
+        group2.bind("<Button-1>", leftClick)
+        group2.grid(row=2, column=1)
+        top3.destroy()  # close the popup
+        group2.config(state='normal')
+
+
+#def close_group_3():
+
+#'''New Window'''
+
 def open_top2():
     global top2
     global big
+    global group1
     top2 = Toplevel(root, bg="Black")
     big = top2
     top2.title("Group 1")
     top2.geometry("500x400")
+    top2.protocol("WM_DELETE_WINDOW", close_group_1)
+    group1 = Button(top1, text="Group 1", bg="red", command=open_top2)
+    group1.bind("<Button-1>", leftClick)
+    group1.grid(row=1, column=1)
+    group1.config(state='disabled')
+    # with open("accountnames.txt", "rt") as f, open("passwords.txt", "rt") as p:
+    #     value = [x.strip() for x in (list(f.readlines()))]
+    #     value2 = [x.strip() for x in (list(p.readlines()))]
+    # if len(value) >= 10 and len(value2) >= 10:
+    #     group1.destroy()
+    #     group1 = Button(top1, text="Group 1", bg="green", command=open_top2)
+    #     group1.bind("<Button-1>", leftClick)
+    #     group1.grid(row=1, column=1)
+    #     group1.config(state='disabled')
     account_entry(top2)
    #handler = top_button.destroy()
     #top_button = Button(root, text="Close", command=handler)
@@ -1709,11 +1962,17 @@ def open_top2():
 
 def open_top3():
     global top3
+    global group2
     top3 = Toplevel(root, bg="black")
     top3.title("Group 2")
     top3.geometry("500x400")
+    top3.protocol("WM_DELETE_WINDOW", close_group_2)
+    group2 = Button(top1, text="Group 1", bg="red", command=open_top3)
+    group2.bind("<Button-1>", leftClick)
+    group2.grid(row=2, column=1)
+    group2.config(state='disabled')
     account_entry(top3)
-    return top3
+
 
 def open_top4():
     global top4
@@ -1871,6 +2130,14 @@ def open_top25():
 
 count = 0
 
+
+def closeme():
+    top1.destroy()
+
+def popup_quit():
+    top1.destroy() # close the popup
+    top_button.config(state='normal') # reenable the button
+
 def open_top():
         global top1
         global top_button
@@ -1878,17 +2145,28 @@ def open_top():
         top1 = Toplevel(root, bg="black")
         top1.title("Groups of Accounts")
         top1.geometry("600x800")
+        top1.protocol("WM_DELETE_WINDOW", popup_quit)
+        top_button.config(state='disabled')
 
+        # top_button = Button(root, text="Accounts", command=open_top)
+        # top_button.bind("<Button-1>", leftClick2)
+        # top_button.pack()
 
 
         '''Groups'''
         group1 = Button(top1, text="Group 1", bg="red", command=open_top2)
         group1.bind("<Button-1>", leftClick)
         group1.grid(row=1, column=1)
+        top1.protocol("WM_DELETE_WINDOW", close_group_1)
+        group1.config(state='disabled')
+
+
 
         group2 = Button(top1, text="Group 2", bg="red", command=open_top3)
         group2.bind("<Button-1>", leftClick)
         group2.grid(row=2, column=1)
+        top1.protocol("WM_DELETE_WINDOW", popup_quit)
+
 
         group3 = Button(top1, text="Group 3", bg="red", command=open_top4)
         group3.bind("<Button-1>", leftClick)
@@ -1990,6 +2268,10 @@ def open_top():
             group1 = Button(top1, text="Group 1", bg="green", command=open_top2)
             group1.bind("<Button-1>", leftClick)
             group1.grid(row=1, column=1)
+            top1.protocol("WM_DELETE_WINDOW", popup_quit)
+
+
+            #group1.config(state='disabled')
             root.update()
             print(len(value))
             print(len(value2))
@@ -2109,6 +2391,89 @@ def open_top():
             group24.bind("<Button-1>", leftClick)
             group24.grid(row=12, column=2)
 
+
+        # def closeme():
+        #     open_top()
+        #     "None"
+
+            # def new_top_button():
+            #
+            #     # NewWin = tk.Toplevel(root)
+            #     # NewWin.title('New Window')
+            #     # NewWin.geometry('300x300')
+            #     # NewWinButton.config(state='disable')
+            #     top1 = Toplevel(root, bg="black")
+            #     top1.title("Groups of Accounts")
+            #     top1.geometry("600x800")
+            #     top1.config(state='disbale')
+            #     #top_button = Button(root, text="Accounts", command=open_top)
+            #     #top_button.bind("<Button-1>", leftClick2)
+            #     # top_button.grid(column=1, row=1)
+            #     #top_button.pack()
+            #     top_button.config(state='disable')
+            #
+            #     def quit_win():
+            #         top1.destroy()
+            #         top_button.config(state='normal')
+            #
+            #     QuitButton = Button(top1, text='Quit', command=quit_win)
+            #     QuitButton.pack()
+            #
+            #     top1.protocol("WM_DELETE_WINDOW", quit_win)
+            # top_button = Button(root, text="Accounts", command=new_top_button)
+            # top_button.pack
+
+        # top_button = Button(root, text="Accounts", command=top_button)
+        # top_button.bind("<Button-1>", leftClick2)
+        # # top_button.grid(column=1, row=1)
+        # top_button.pack()
+
+        # for i in range(len(hi)):
+        #     if i ==2:
+        #         top_button.destroy()
+        #         top_button = Button(root, text="Accounts", command=open_top)
+        #         top_button.bind("<Button-1>", leftClick2)
+        #         top_button.pack()
+        #         # top_button.grid(column=1, row=1)
+        #         # top_button.configure(state='active')
+        #
+        #         root.update()
+        #     else:
+        #         top_button.destroy()
+        #         top_button = Button(root, text="Accounts", command=open_top)
+        #         top_button.bind("<Button-1>", leftClick2)
+        #         top_button.pack()
+        #         # top_button.grid(column=1, row=1)
+        #         # top_button.configure(state='disabled')
+        #
+        #         root.update()
+
+
+
+         #if z == 0:
+             #top_button.protocol("WM_DELETE_WINDOW", top_button.destroy)
+
+        #     top_button.destroy()
+        #     top_button = Button(root, text="Accounts", command=None)
+        #     top_button.bind("<Button-1>", leftClick2)
+        #     top_button.pack()
+        #     # top_button.grid(column=1, row=1)
+        #     # top_button.configure(state='active')
+        #
+        #     root.update()
+             #z = 2
+        #
+         #if z == 2:
+        #     top_button.destroy()
+        #      top_button = Button(root, text="Accounts", command=open_top)
+        #      top_button.bind("<Button-1>", leftClick2)
+        #      top_button.pack()
+        #     # top_button.grid(column=1, row=1)
+        #     # top_button.configure(state='disabled')
+        #
+        #     root.update()
+        #
+             #z = 0
 
 
 
@@ -2236,15 +2601,15 @@ def save_username_test(filename):
             if username10:
                 list1[9] = username10.get() + '\n'
                 count1 += 1
-            for x in list1:
+            #for x in list1:
                     #x.strip()
                     #f.write(str(x) + '\n')
                     #f.write("%s%s\n" % str(x))
                     #f.write("\n".join(map(lambda x: str(x), list1)) + "\n")
                     #f.write("\n".join("%s%s" % (str(x) for x in list1)))
                     #f.write("%s%s\n" % (x, x.join(list1)))
-                    f.writelines(x)
-            root.update()
+                    #f.writelines(x)
+            #root.update()
                 #if leftClick(username1)
             #if top3:
 
@@ -2285,9 +2650,9 @@ def save_password(filename):
 
 
 
-
-
-
+top_button = Button(root, text="Accounts", command=open_top)
+top_button.bind("<Button-1>", leftClick2)
+top_button.pack()
 
 
 
